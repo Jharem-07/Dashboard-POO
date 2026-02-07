@@ -1,6 +1,6 @@
 import os
 import subprocess
-print("Dashboard de POO - Jharem")
+print("Dashboard Personal de Programación Orientada a Objetos")
 
 def mostrar_codigo(ruta_script):
     # Asegúrate de que la ruta al script es absoluta
@@ -41,13 +41,13 @@ def mostrar_menu():
         # Imprime las opciones del menú principal
         for key in unidades:
             print(f"{key} - {unidades[key]}")
-        print("0 - Salir")
+        print("\nMenú Principal - Dashboard POO")
 
-        eleccion_unidad = input("Elige una unidad o '0' para salir: ")
+        eleccion_unidad = input("Selecciona una opción: ")
         if eleccion_unidad == '0':
             print("Saliendo del programa.")
             break
-        elif eleccion_unidad in unidades:
+        eleccion_unidad = input("Selecciona una opción: ")
             mostrar_sub_menu(os.path.join(ruta_base, unidades[eleccion_unidad]))
         else:
             print("Opción no válida. Por favor, intenta de nuevo.")
@@ -56,7 +56,8 @@ def mostrar_sub_menu(ruta_unidad):
     sub_carpetas = [f.name for f in os.scandir(ruta_unidad) if f.is_dir()]
 
     while True:
-        print("\nSubmenú - Selecciona una subcarpeta")
+        print("\nContenido de la unidad seleccionada")
+
         # Imprime las subcarpetas
         for i, carpeta in enumerate(sub_carpetas, start=1):
             print(f"{i} - {carpeta}")
@@ -83,8 +84,8 @@ def mostrar_scripts(ruta_sub_carpeta):
         # Imprime los scripts
         for i, script in enumerate(scripts, start=1):
             print(f"{i} - {script}")
-        print("0 - Regresar al submenú anterior")
-        print("9 - Regresar al menú principal")
+       print("\nListado de ejercicios disponibles")
+
 
         eleccion_script = input("Elige un script, '0' para regresar o '9' para ir al menú principal: ")
         if eleccion_script == '0':
@@ -98,7 +99,8 @@ def mostrar_scripts(ruta_sub_carpeta):
                     ruta_script = os.path.join(ruta_sub_carpeta, scripts[eleccion_script])
                     codigo = mostrar_codigo(ruta_script)
                     if codigo:
-                        ejecutar = input("¿Desea ejecutar el script? (1: Sí, 0: No): ")
+                        ejecutar = input("¿Deseas ejecutar este ejercicio ahora? (1 = Sí / 0 = No): ")
+
                         if ejecutar == '1':
                             ejecutar_codigo(ruta_script)
                         elif ejecutar == '0':
